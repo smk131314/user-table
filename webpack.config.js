@@ -1,6 +1,8 @@
 const path = require('path')
 const HtmlPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
+const tsConfigPath = path.resolve(__dirname, "./tsconfig.json")
 
 module.exports = {
   entry: './src/main.ts',
