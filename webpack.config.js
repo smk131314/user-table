@@ -1,14 +1,21 @@
-// webpack.config.js
 const path = require('path')
 const HtmlPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
-  entry: './src/main.js',
+  entry: './src/main.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/bundle.js',
     clean: true
+  },
+  resolve: {
+    extensions: ['.ts', '.js'],
+    plugins:[
+      new TsconfigPathsPlugin({
+        configFile: tsConfigPath
+      })
+    ]
   },
 	module: {
 		rules: [
@@ -19,6 +26,29 @@ module.exports = {
           filename: 'assets/images/[name][ext]'
         },
       },
+      {
+        test: /\.ts$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.m?js$/,
+        include: [path.resolve(__dirname, 'src')],
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ["@babel/preset-env", {
+                "useBuiltIns": "usage",
+                "corejs": 3
+              }],
+              "@babel/preset-typescript"
+            ],
+            plugins: ["@babel/plugin-proposal-class-properties"]
+          }
+        }
+      }
 		]
 	},
 	devtool: "inline-source-map",
