@@ -48,6 +48,24 @@ module.exports = {
             plugins: ["@babel/plugin-proposal-class-properties"]
           }
         }
+      },
+      {
+        test: /\.m?js$/,
+        include: [path.resolve(__dirname, 'src')],
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ["@babel/preset-env", {
+                "useBuiltIns": "usage",
+                "corejs": 3
+              }],
+              "@babel/preset-typescript"
+            ],
+            plugins: ["@babel/plugin-proposal-class-properties"]
+          }
+        }
       }
 		]
 	},
