@@ -31,7 +31,7 @@ export default class App extends Component {
   }
 
   mounted(): void {
-    const { userList, addRandomUser } = this;
+    const { userList, addRandomUser, removeUser } = this;
     const addUserButtonEl = this.targetEl.querySelector('[data-component="add-user-button"]')
     const userListWrapperEl = this.targetEl.querySelector('[data-component="user-list-wrapper"]')
 
@@ -40,7 +40,8 @@ export default class App extends Component {
         addUser: addRandomUser.bind(this)
       });
       new UserListItem(userListWrapperEl, {
-        userList
+        userList,
+        removeUser: removeUser.bind(this)
       });
     }
   }
@@ -63,5 +64,12 @@ export default class App extends Component {
         newRandomUser
       ]
     })
+  }
+
+  removeUser (targetUserId: number) {
+    const userList = [ ...this.state.userList ];
+    const targetUserIndex = userList.findIndex(user => user.id === targetUserId);
+    userList.splice(targetUserIndex, 1);
+    this.setState({ userList });
   }
 }

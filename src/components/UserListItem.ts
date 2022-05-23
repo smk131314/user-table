@@ -2,12 +2,13 @@ import Component from "core/Component";
 import { UserType } from "constant";
 
 export default class UserListItem extends Component {
+  
   template(): string {
     const { userList } = this.props;
 
     return `
       ${userList.map((user: UserType) => (
-        `<tr class="userListItem">
+        `<tr class="userListItem" data-id="${user.id}">
           <td class="profileWrapper">
             <img src="${user.profileUrl}" alt='${user.name} profile' class="profileImage" />
             <p>${user.name}</p>
@@ -23,5 +24,14 @@ export default class UserListItem extends Component {
         </tr>`
       )).join('')}
     `
+  }
+
+  setEvent(): void {
+    const { removeUser } = this.props;
+
+    this.addEvent('click', '.deleteButton', ({ target }: any) => {
+      const targetId = Number(target.closest('[data-id').dataset.id)
+      removeUser(targetId)
+    })
   }
 }
