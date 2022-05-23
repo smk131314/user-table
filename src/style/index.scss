@@ -1,8 +1,21 @@
 @import './variables';
 @import './mixin';
 
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
 body {
   background-color: $main-blue;
+}
+
+table {
+  margin: 0;
+  padding: 0;
 }
 
 ul {
@@ -11,4 +24,104 @@ ul {
 
 li {
   list-style: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+#app {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  font-family: Lato;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  .userTableWrapper {
+    width: 100%;
+    max-height: 70vh;
+    margin: 0 12vw;
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 0 10px rgba($color: $dark-blue, $alpha: 0.05);
+    color: $dark-blue;
+    padding: 2rem 1rem 1rem;
+    overflow-y: scroll;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    td {
+      padding: 1rem;
+    }
+  }
+
+  thead {
+    font-size: 1rem;
+    font-weight: bold;
+    line-height: 1.25rem;
+    th {
+      text-align: left;
+      padding: 0 0 2rem 1rem;
+    }
+  }
+
+  tbody {
+    font-size: 0.875rem;
+    font-weight: 400;
+  }
+
+  .profileImage,
+  .addButton,
+  .deleteButton {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 1.25rem;
+  }
+
+  .addButton {
+    background-color: $red;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+  }
+
+  [data-component='add-user-button'] {
+    padding-bottom: 1rem;
+  }
+
+  .deleteButton {
+    background-color: white;
+    border: none;
+  }
+
+  .userListItem {
+    border-top: 1px solid $light-blue;
+    margin: 0 1rem;
+
+    &:hover {
+      background-color: $shadow-blue;
+    }
+  }
+
+  .profileWrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .profileImage {
+    margin-right: 1rem;
+  }
+
+  .deleteButtonWrapper {
+    text-align: right;
+  }
 }

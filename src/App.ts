@@ -15,7 +15,7 @@ export default class App extends Component {
               <th>Date registered</th>
             </tr>
           </thead>
-          <tr data-component="add-user-button"></tr>
+          <tr><td data-component="add-user-button"></td></tr>
           <tbody data-component="user-list-wrapper"></tbody>
         </table>
       </div>
