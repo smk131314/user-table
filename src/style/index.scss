@@ -1,0 +1,14 @@
+@import './variables';
+@import './mixin';
+
+body {
+  background-color: $main-blue;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
