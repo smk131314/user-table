@@ -1,8 +1,16 @@
 import Component from "core/Component";
 import AddUserButton from "@components/AddUserButton";
 import UserListItem from "@components/UserListItem";
+import { USER_DATA, UserType } from "constant";
 
 export default class App extends Component {
+
+  setup () {
+    this.state = {
+      userList: USER_DATA
+    }
+  }
+
   template(): string {
     return `
       <div class="userTableWrapper">
@@ -21,13 +29,39 @@ export default class App extends Component {
       </div>
     `
   }
+
   mounted(): void {
+    const { userList, addRandomUser } = this;
     const addUserButtonEl = this.targetEl.querySelector('[data-component="add-user-button"]')
     const userListWrapperEl = this.targetEl.querySelector('[data-component="user-list-wrapper"]')
 
     if (addUserButtonEl && userListWrapperEl) {
-      new AddUserButton(addUserButtonEl);
-      new UserListItem(userListWrapperEl);
+      new AddUserButton(addUserButtonEl, {
+        addUser: addRandomUser.bind(this)
+      });
+      new UserListItem(userListWrapperEl, {
+        userList
+      });
     }
+  }
+
+  get userList (): UserType[] {
+    const { userList } = this.state;
+    return userList
+  }
+
+  addRandomUser () {
+    const { userList } = this.state;
+    const newId = Math.max(0, ...userList.map((user: UserType) => user.id)) + 1;
+    const randomIndex = Math.floor(Math.random() * userList.length);
+    const newRandomUser: UserType = { ...userList[randomIndex] };
+    newRandomUser.id = newId;
+
+    this.setState({
+      userList: [
+        ...userList,
+        newRandomUser
+      ]
+    })
   }
 }

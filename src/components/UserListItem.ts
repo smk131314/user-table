@@ -1,37 +1,12 @@
 import Component from "core/Component";
+import { UserType } from "constant";
 
 export default class UserListItem extends Component {
   template(): string {
-    const userList = [
-      {
-        name: 'Lucy Dua',
-        profileUrl: 'https://picsum.photos/200/300',
-        email: 'Lucy@emial.com',
-        phone: '081 454 0666',
-        date: 'Today'
-      }, {
-        name: 'Lucy Dua',
-        profileUrl: 'https://picsum.photos/200/300',
-        email: 'Lucy@emial.com',
-        phone: '081 454 0666',
-        date: 'Today'
-      }, {
-        name: 'Lucy Dua',
-        profileUrl: 'https://picsum.photos/200/300',
-        email: 'Lucy@emial.com',
-        phone: '081 454 0666',
-        date: 'Today'
-      }, {
-        name: 'Lucy Dua',
-        profileUrl: 'https://picsum.photos/200/300',
-        email: 'Lucy@emial.com',
-        phone: '081 454 0666',
-        date: 'Today'
-      }
-    ]
+    const { userList } = this.props;
 
     return `
-      ${userList.map(user => (
+      ${userList.map((user: UserType) => (
         `<tr class="userListItem">
           <td class="profileWrapper">
             <img src="${user.profileUrl}" alt='${user.name} profile' class="profileImage" />
