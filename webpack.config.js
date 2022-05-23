@@ -52,23 +52,13 @@ module.exports = {
         }
       },
       {
-        test: /\.m?js$/,
-        include: [path.resolve(__dirname, 'src')],
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              ["@babel/preset-env", {
-                "useBuiltIns": "usage",
-                "corejs": 3
-              }],
-              "@babel/preset-typescript"
-            ],
-            plugins: ["@babel/plugin-proposal-class-properties"]
-          }
-        }
-      }
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+         'style-loader',
+         'css-loader',
+         'sass-loader',
+        ],
+      },
 		]
 	},
 	devtool: "inline-source-map",
@@ -86,6 +76,6 @@ module.exports = {
 			patterns: [
 				{ from: 'public/favicon.ico'}
 			]
-		})
+		}),
   ]
 }
