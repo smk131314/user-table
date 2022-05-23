@@ -54,8 +54,8 @@ export default class App extends Component {
   addRandomUser () {
     const { userList } = this.state;
     const newId = Math.max(0, ...userList.map((user: UserType) => user.id)) + 1;
-    const randomIndex = Math.floor(Math.random() * userList.length);
-    const newRandomUser: UserType = { ...userList[randomIndex] };
+    const randomIndex = Math.floor(Math.random() * USER_DATA.length);
+    const newRandomUser: UserType = { ...USER_DATA[randomIndex] };
     newRandomUser.id = newId;
 
     this.setState({
