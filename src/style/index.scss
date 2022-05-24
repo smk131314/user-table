@@ -110,26 +110,12 @@ button {
   .userListItem {
     border-top: 1px solid $light-blue;
     margin: 0 1rem;
+    position: relative;
     
     td {
       height: 4.25rem;
       padding: 0;
       padding-left: 1rem;
-    }
-
-    &:hover {
-      background-color: $shadow-blue;
-      &::before,
-      &::after {
-        content: '';
-        position: absolute;
-        width: 1rem;
-        height: 4.25rem;
-        background-color: $shadow-blue;
-      }
-      &::before {
-        transform: translateX(-1rem);
-      }
     }
   }
 
@@ -145,5 +131,29 @@ button {
 
   .deleteButtonWrapper {
     text-align: right;
+  }
+
+  @media (hover: hover) {
+    .userListItem:hover {
+      background-color: $shadow-blue;
+      &::before {
+        content: '';
+        width: 1rem;
+        height: 4.25rem;
+        background-color: $shadow-blue;
+        position: absolute;
+        top: 0;
+        left: -1rem;
+      }
+      &::after {
+        content: '';
+        width: 1rem;
+        height: 4.25rem;
+        background-color: $shadow-blue;
+        position: absolute;
+        top: 0;
+        right: -1rem;
+      }
+    }
   }
 }
